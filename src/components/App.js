@@ -1,5 +1,6 @@
-import '../styles/App.scss';
-import { useState } from 'react';
+import Header from "./Header";
+import { useState } from "react";
+import "../styles/App.scss";
 
 //1. Pintar los guiones de la solución (fase 1)
 //2. Modificar un array del estado
@@ -9,17 +10,17 @@ import { useState } from 'react';
 function App() {
   //Estados
   const [numberOfErrors, setError] = useState(0);
-  const [lastLetter, setLastLetter] = useState('');
-  const [word, setWord] = useState('katakroker');
+  const [lastLetter, setLastLetter] = useState("");
+  const [word, setWord] = useState("katakroker");
   const [userLetters, setUserLetters] = useState([]);
 
   const handleLastLetter = (e) => {
     const lastLetterValue = e.target.value;
     // si la letra que meto es una de las indicadas entonces cambias el estado
-    if (lastLetterValue.match('^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]?$')) {
+    if (lastLetterValue.match("^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]?$")) {
       setLastLetter(lastLetterValue);
     }
-    if (lastLetterValue !== '') {
+    if (lastLetterValue !== "") {
       setUserLetters([...userLetters, lastLetterValue]); //----- mirar devtools ""
     }
   };
@@ -29,20 +30,20 @@ function App() {
   };
 
   const renderSolutionLetters = () => {
-    const wordLetters = word.split('');
+    const wordLetters = word.split("");
     return wordLetters.map((letter, index) => {
       //si la letra no está en userLetters --->  li vacío
       //si la letra sí está en userLetters --->  li con esa letra
       return (
         <li key={index} className="letter">
-          {userLetters.includes(letter) ? letter : ''}
+          {userLetters.includes(letter) ? letter : ""}
         </li>
       );
     });
   };
 
   const renderErrorLetters = () => {
-    const wordLetters = word.split('');
+    const wordLetters = word.split("");
     const errorLetter = userLetters.filter(
       (eachLetter) => !wordLetters.includes(eachLetter)
     );
@@ -56,12 +57,17 @@ function App() {
     });
   };
 
+  const getNumberErrorLetter = () => {
+    const NumberErrorletter = userLetters.filter(
+      (eachLetter) => !word.includes(eachLetter)
+    );
+    return NumberErrorletter.length;
+  };
+
   return (
     <div>
       <div className="page">
-        <header>
-          <h1 className="header__title">Juego del ahorcado</h1>
-        </header>
+        <Header />
         <main className="main">
           <section>
             <div className="solution">
@@ -124,7 +130,7 @@ function App() {
             <span className="error-4 line"></span>
             <span className="error-3 line"></span>
             <span className="error-2 line"></span>
-            <span className="error-1 line"></span>
+            <span className={`error-${getNumberErrorLetter()} line`}></span>
           </section>
         </main>
       </div>
