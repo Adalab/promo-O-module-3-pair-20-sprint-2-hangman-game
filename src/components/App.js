@@ -1,6 +1,6 @@
-import Header from "./Header";
-import { useState } from "react";
-import "../styles/App.scss";
+import Header from './Header';
+import { useState } from 'react';
+import '../styles/App.scss';
 
 //1. Pintar los guiones de la solución (fase 1)
 //2. Modificar un array del estado
@@ -10,40 +10,36 @@ import "../styles/App.scss";
 function App() {
   //Estados
   const [numberOfErrors, setError] = useState(0);
-  const [lastLetter, setLastLetter] = useState("");
-  const [word, setWord] = useState("katakroker");
+  const [lastLetter, setLastLetter] = useState('');
+  const [word, setWord] = useState('katakroker');
   const [userLetters, setUserLetters] = useState([]);
 
   const handleLastLetter = (e) => {
     const lastLetterValue = e.target.value;
     // si la letra que meto es una de las indicadas entonces cambias el estado
-    if (lastLetterValue.match("^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]?$")) {
+    if (lastLetterValue.match('^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]?$')) {
       setLastLetter(lastLetterValue);
     }
-    if (lastLetterValue !== "") {
+    if (lastLetterValue !== '') {
       setUserLetters([...userLetters, lastLetterValue]); //----- mirar devtools ""
     }
   };
 
-  const handleClick = () => {
-    setError(numberOfErrors + 1);
-  };
-
   const renderSolutionLetters = () => {
-    const wordLetters = word.split("");
+    const wordLetters = word.split('');
     return wordLetters.map((letter, index) => {
       //si la letra no está en userLetters --->  li vacío
       //si la letra sí está en userLetters --->  li con esa letra
       return (
         <li key={index} className="letter">
-          {userLetters.includes(letter) ? letter : ""}
+          {userLetters.includes(letter) ? letter : ''}
         </li>
       );
     });
   };
 
   const renderErrorLetters = () => {
-    const wordLetters = word.split("");
+    const wordLetters = word.split('');
     const errorLetter = userLetters.filter(
       (eachLetter) => !wordLetters.includes(eachLetter)
     );
@@ -61,6 +57,8 @@ function App() {
     const NumberErrorletter = userLetters.filter(
       (eachLetter) => !word.includes(eachLetter)
     );
+    // console.log(NumberErrorletter.length);
+
     return NumberErrorletter.length;
   };
 
@@ -73,30 +71,11 @@ function App() {
             <div className="solution">
               <h2 className="title">Solución:</h2>
 
-              <ul className="letters">
-                {renderSolutionLetters()}
-                {/* <li className="letter">k</li>
-                <li className="letter">a</li>
-                <li className="letter"></li>
-                <li className="letter">a</li>
-                <li className="letter">k</li>
-                <li className="letter">r</li>
-                <li className="letter"></li>
-                <li className="letter">k</li>
-                <li className="letter">e</li>
-                <li className="letter">r</li> */}
-              </ul>
+              <ul className="letters">{renderSolutionLetters()}</ul>
             </div>
             <div className="error">
               <h2 className="title">Letras falladas:</h2>
-              <ul className="letters">
-                {renderErrorLetters()}
-                {/* <li className="letter">f</li>
-                <li className="letter">q</li>
-                <li className="letter">h</li>
-                <li className="letter">p</li>
-                <li className="letter">x</li> */}
-              </ul>
+              <ul className="letters">{renderErrorLetters()}</ul>
             </div>
 
             <form className="form">
@@ -116,8 +95,7 @@ function App() {
             </form>
           </section>
 
-          <section className={`dummy error-${numberOfErrors}`}>
-            <button onClick={handleClick}>Incrementar</button>
+          <section className={`dummy error-${getNumberErrorLetter()}`}>
             <span className="error-13 eye"></span>
             <span className="error-12 eye"></span>
             <span className="error-11 line"></span>
@@ -130,7 +108,7 @@ function App() {
             <span className="error-4 line"></span>
             <span className="error-3 line"></span>
             <span className="error-2 line"></span>
-            <span className={`error-${getNumberErrorLetter()} line`}></span>
+            <span className="error-1 line"></span>
           </section>
         </main>
       </div>
