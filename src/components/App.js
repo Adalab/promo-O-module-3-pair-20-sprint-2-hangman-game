@@ -1,10 +1,14 @@
-import Header from './Header';
 import { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Header from './Header';
 import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
-import '../styles/App.scss';
 import Form from './Form';
+import Instructions from './Instructions';
+import Options from './Options';
+import Footer from './Footer';
+import '../styles/App.scss';
 
 //1. Pintar los guiones de la solución (fase 1)
 //2. Modificar un array del estado
@@ -34,14 +38,27 @@ function App() {
       <div className="page">
         <Header />
         <main className="main">
-          <section>
-            <SolutionLetters word={word} userLetters={userLetters} />
-            <ErrorLetters word={word} userLetters={userLetters} />
-            <Form lastLetter={lastLetter} handleLastLetter={handleLastLetter} />
-          </section>
-
+          <Switch>
+            <Route exact path="/">
+              <section>
+                <SolutionLetters word={word} userLetters={userLetters} />
+                <ErrorLetters word={word} userLetters={userLetters} />
+                <Form
+                  lastLetter={lastLetter}
+                  handleLastLetter={handleLastLetter}
+                />
+              </section>
+            </Route>
+            <Route exact path="/instructions">
+              <Instructions />
+            </Route>
+            <Route exact path="/options">
+              <Options />
+            </Route>
+          </Switch>
           <Dummy word={word} userLetters={userLetters} />
         </main>
+        <Footer />
       </div>
     </div>
   );
