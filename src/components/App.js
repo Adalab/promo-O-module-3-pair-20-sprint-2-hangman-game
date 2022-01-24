@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import Dummy from './Dummy';
@@ -20,9 +20,19 @@ function App() {
   //Estados
   // const [numberOfErrors, setError] = useState(0);
   const [lastLetter, setLastLetter] = useState('');
-  const [word, setWord] = useState('katakroker');
+  const [word, setWord] = useState('');
   const [userLetters, setUserLetters] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch('https://palabras-aleatorias-public-api.herokuapp.com/random')
+      .then((response) => response.json())
+      .then((responseWord) => {
+        setWord(responseWord.body.Word);
+        setIsLoading(false);
+      });
+  }, []);
 
   const handleLastLetter = (lastLetterValue) => {
     // const lastLetterValue = e.target.value;
@@ -38,7 +48,7 @@ function App() {
   return (
     <div>
       <div className="page">
-        <Loading loading={true} />
+        <Loading loading={isLoading} />
         <Header />
         <main className="main">
           <Switch>

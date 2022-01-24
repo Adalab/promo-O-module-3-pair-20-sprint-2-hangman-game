@@ -1,7 +1,5 @@
 function Dummy(props) {
   const getNumberErrorLetter = () => {
-    console.log(props);
-
     const NumberErrorletter = props.userLetters.filter(
       (eachLetter) => !props.word.includes(eachLetter)
     );
