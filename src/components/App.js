@@ -17,7 +17,7 @@ import '../styles/App.scss';
 //5. Pintar el muñeco
 function App() {
   //Estados
-  const [numberOfErrors, setError] = useState(0);
+  // const [numberOfErrors, setError] = useState(0);
   const [lastLetter, setLastLetter] = useState('');
   const [word, setWord] = useState('katakroker');
   const [userLetters, setUserLetters] = useState([]);
