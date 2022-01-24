@@ -8,6 +8,7 @@ import Form from './Form';
 import Instructions from './Instructions';
 import Options from './Options';
 import Footer from './Footer';
+import Loading from './Loading';
 import '../styles/App.scss';
 
 //1. Pintar los guiones de la solución (fase 1)
@@ -21,6 +22,7 @@ function App() {
   const [lastLetter, setLastLetter] = useState('');
   const [word, setWord] = useState('katakroker');
   const [userLetters, setUserLetters] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const handleLastLetter = (lastLetterValue) => {
     // const lastLetterValue = e.target.value;
@@ -36,6 +38,7 @@ function App() {
   return (
     <div>
       <div className="page">
+        <Loading loading={true} />
         <Header />
         <main className="main">
           <Switch>
