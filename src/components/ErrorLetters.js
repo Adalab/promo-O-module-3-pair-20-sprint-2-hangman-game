@@ -1,3 +1,5 @@
+import propTypes from 'prop-types';
+
 function ErrorLetters(props) {
   const renderErrorLetters = () => {
     const wordLetters = props.word.split('');
@@ -21,5 +23,10 @@ function ErrorLetters(props) {
     </div>
   );
 }
+
+ErrorLetters.propTypes = {
+  word: propTypes.string.isRequired,
+  userLetters: propTypes.array.isRequired,
+};
 
 export default ErrorLetters;

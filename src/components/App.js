@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import Loading from './Loading';
 import Header from './Header';
 import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
@@ -8,7 +9,6 @@ import Form from './Form';
 import Instructions from './Instructions';
 import Options from './Options';
 import Footer from './Footer';
-import Loading from './Loading';
 import '../styles/App.scss';
 
 //1. Pintar los guiones de la solución (fase 1)
@@ -18,7 +18,6 @@ import '../styles/App.scss';
 //5. Pintar el muñeco
 function App() {
   //Estados
-  // const [numberOfErrors, setError] = useState(0);
   const [lastLetter, setLastLetter] = useState('');
   const [word, setWord] = useState('');
   const [userLetters, setUserLetters] = useState([]);

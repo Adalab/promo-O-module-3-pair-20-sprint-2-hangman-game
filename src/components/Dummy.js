@@ -1,3 +1,5 @@
+import propTypes from 'prop-types';
+
 function Dummy(props) {
   const getNumberErrorLetter = () => {
     const NumberErrorletter = props.userLetters.filter(
@@ -26,5 +28,10 @@ function Dummy(props) {
     </section>
   );
 }
+
+Dummy.propTypes = {
+  word: propTypes.string.isRequired,
+  userLetters: propTypes.array.isRequired,
+};
 
 export default Dummy;
